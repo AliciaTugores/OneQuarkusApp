@@ -83,20 +83,20 @@ public class ServiceTest {
 		Assertions.assertThat(servicio).isNotNull();
 	}
 
-	// /**
-	//  * Implementa el metodo cargaUsuaria del servicio.
-	//  * Devuelve la usuaria con el nombre indicado, si existe.
-	//  * Si no existe, devuelve un objeto usuaria con sus propiedades
-    //  * y valores como se indica en los casos test.
-	//  */
-	// @Test
-	// public void test_carga_usuaria() {
-	// 	Assertions.assertThat(servicio).isNotNull();
-	// 	Usuaria elfo = servicio.cargaUsuaria("Doobey");
-	// 	Assertions.assertThat(elfo).isNotNull();
-	// 	Assertions.assertThat(elfo.getNombre()).isEqualTo("Doobey");
-    //     Assertions.assertThat(elfo.getDestreza()).isEqualTo(15);
-	// }
+	/**
+	 * Implementa el metodo cargaUsuaria del servicio.
+	 * Devuelve la usuaria con el nombre indicado, si existe.
+	 * Si no existe, devuelve un objeto usuaria con sus propiedades
+     * y valores como se indica en los casos test.
+	 */
+	@Test
+	public void test_carga_usuaria() {
+		Assertions.assertThat(servicio).isNotNull();
+		Usuaria elfo = servicio.cargaUsuaria("Doobey");
+		Assertions.assertThat(elfo).isNotNull();
+		Assertions.assertThat(elfo.getNombre()).isEqualTo("Doobey");
+        Assertions.assertThat(elfo.getDestreza()).isEqualTo(15);
+	}
 
     // @Test
 	// public void test_carga_usuaria_no_existe() {
