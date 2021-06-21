@@ -10,6 +10,7 @@ import javax.enterprise.context.ApplicationScoped;
 
 import pingpong.examen.Item;
 import pingpong.examen.Usuaria;
+import pingpong.examen.Orden;
 
 @ApplicationScoped
 public class ServiceOlli {
@@ -26,6 +27,17 @@ public class ServiceOlli {
         return item.isPresent() ? item.get() : new Item("", 0, "");
     }
 
-
-
+    //caso test 9 y 10
+    public List<Orden> cargaOrden(String name){
+        Optional<Orden> orden = Orden.find("ord_user", name).firstResultOptional();
+        List<Orden> pedidos = new ArrayList<Orden>();
+        if (orden.isPresent()){
+            pedidos.add(orden.get());
+            return pedidos;
+        }
+        else{
+            return pedidos;
+        }
+    }
+    
 }
