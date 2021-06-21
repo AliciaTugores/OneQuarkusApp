@@ -1,4 +1,4 @@
-
+package pingpong.examen;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,8 +22,8 @@ public class ServiceTest {
     @PersistenceContext
     EntityManager em;
 
-    @Inject
-    ServiceOlli servicio;
+    // @Inject
+    // ServiceOlli servicio;
 
     /**
 	 * MAPPINGS de la entidades a las tablas de la BBDD.
