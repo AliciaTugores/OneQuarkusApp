@@ -40,13 +40,13 @@ public class ServiceOlli {
         }
     }
 
-    //caso test 11, 12 y 13
+    //caso test 11, 12, 13 y 14
     @Transactional
     public Orden comanda(String name_user, String name_item){
         Optional<Usuaria> user = Usuaria.find("user_nom", name_user).firstResultOptional();
         Optional<Item> item = Item.find("item_nom", name_item).firstResultOptional();
 
-        if (item.isPresent() && user.isPresent()){
+        if (item.isPresent() && user.isPresent() && user.get().getDestreza() > item.get().getQuality()){
             Orden pedido = new Orden(user.get(), item.get());
             pedido.persist();
             return pedido;
