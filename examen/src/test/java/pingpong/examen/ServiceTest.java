@@ -157,72 +157,72 @@ public class ServiceTest {
 		Assertions.assertThat(ordenes).isEmpty();
 	}
 
-    // /**
-    //  * Implementa el metodo "comanda" del servicio
-	//  * que permite a una usuaria pedir un item.
-    //  * La usuaria y el item ya existen en la bbdd (NO has de crearlos).
-	//  * 
-	//  * Guarda esta orden en su tabla en la base de datos.
-	//  * 
-    //  * El metodo devuelve la orden de tipo Orden creada.
-	//  */
-	// @Test
-	// @Transactional
-	// public void test_comanda_ok() {
-    //     Assertions.assertThat(servicio).isNotNull();
-	// 	Orden orden = servicio.comanda("Hermione", "AgedBrie");
-	// 	Assertions.assertThat(orden).isNotNull();
-	// 	Assertions.assertThat(orden.getId()).isNotZero();
-	// 	Assertions.assertThat(orden.getUser().getNombre()).isEqualTo("Hermione");
-	// 	Assertions.assertThat(orden.getItem().getNombre()).isEqualTo("AgedBrie");
+    /**
+     * Implementa el metodo "comanda" del servicio
+	 * que permite a una usuaria pedir un item.
+     * La usuaria y el item ya existen en la bbdd (NO has de crearlos).
+	 * 
+	 * Guarda esta orden en su tabla en la base de datos.
+	 * 
+     * El metodo devuelve la orden de tipo Orden creada.
+	 */
+	@Test
+	@Transactional
+	public void test_comanda_ok() {
+        Assertions.assertThat(servicio).isNotNull();
+		Orden orden = servicio.comanda("Hermione", "AgedBrie");
+		Assertions.assertThat(orden).isNotNull();
+		Assertions.assertThat(orden.getId()).isNotZero();
+		Assertions.assertThat(orden.getUser().getNombre()).isEqualTo("Hermione");
+		Assertions.assertThat(orden.getItem().getNombre()).isEqualTo("AgedBrie");
 
-	// 	TypedQuery<Orden> query = em.createQuery("select orden from Orden orden join orden.user user where user.nombre = 'Hermione'", Orden.class);
-	// 	List<Orden> pedidos = query.getResultList();
+		TypedQuery<Orden> query = em.createQuery("select orden from Orden orden join orden.user user where user.nombre = 'Hermione'", Orden.class);
+		List<Orden> pedidos = query.getResultList();
 		
-    //     Assertions.assertThat(pedidos).isNotNull();
-	// 	Assertions.assertThat(pedidos).hasSize(2);
-    //     Assertions.assertThat(pedidos.get(1).getUser().getNombre()).isEqualTo("Hermione");
-	// 	Assertions.assertThat(pedidos.get(1).getItem().getNombre()).isEqualToIgnoringCase("AgedBrie");
-	// 	em.find(Orden.class, pedidos.get(1).getId()).delete();
-	// }
+        Assertions.assertThat(pedidos).isNotNull();
+		Assertions.assertThat(pedidos).hasSize(2);
+        Assertions.assertThat(pedidos.get(1).getUser().getNombre()).isEqualTo("Hermione");
+		Assertions.assertThat(pedidos.get(1).getItem().getNombre()).isEqualToIgnoringCase("AgedBrie");
+		em.find(Orden.class, pedidos.get(1).getId()).delete();
+	}
 
-	// /**
-    //  * Implementa el metodo comanda del servicio
-	//  * para que NO permita generar pedidos de productos
-	//  * si no existe la usuaria en la base de datos.
-	//  */
-	// @Test
-	// public void test_comanda_no_user() {
-	// 	Assertions.assertThat(servicio).isNotNull();
-	// 	Orden orden = servicio.comanda("Severus", "+5 Dexterity Vest");
-	// 	Assertions.assertThat(orden).isNull();
-	// 	Usuaria profesor = servicio.cargaUsuaria("Severus");
-	// 	Assertions.assertThat(profesor).isNotNull();
-	// 	Assertions.assertThat(profesor.getNombre()).isEmpty();
-    //     Assertions.assertThat(profesor.getDestreza()).isZero();
+	/**
+     * Implementa el metodo comanda del servicio
+	 * para que NO permita generar pedidos de productos
+	 * si no existe la usuaria en la base de datos.
+	 */
+	@Test
+	public void test_comanda_no_user() {
+		Assertions.assertThat(servicio).isNotNull();
+		Orden orden = servicio.comanda("Severus", "+5 Dexterity Vest");
+		Assertions.assertThat(orden).isNull();
+		Usuaria profesor = servicio.cargaUsuaria("Severus");
+		Assertions.assertThat(profesor).isNotNull();
+		Assertions.assertThat(profesor.getNombre()).isEmpty();
+        Assertions.assertThat(profesor.getDestreza()).isZero();
 
-	// 	Orden pedido = em.find(Orden.class, 3L);
-    //     Assertions.assertThat(pedido).isNull();
-	// }
+		Orden pedido = em.find(Orden.class, 3L);
+        Assertions.assertThat(pedido).isNull();
+	}
     
-	// /**
-    //  * Implementa el metodo comanda del servicio
-	//  * para que NO permita generar pedidos de productos
-	//  * si no existe el item en la base de datos.
-	//  */
-	// @Test
-	// public void test_comanda_no_item() {
-	// 	Assertions.assertThat(servicio).isNotNull();
-	// 	Orden orden = servicio.comanda("Hermione", "Reliquias de la muerte");
-	// 	Assertions.assertThat(orden).isNull();
-	// 	Item item = (Item) servicio.cargaItem("Reliquias de la muerte");
-	// 	Assertions.assertThat(item).isNotNull();
-	// 	Assertions.assertThat(item.getNombre()).isEmpty();
-	// 	Assertions.assertThat(item.getQuality()).isZero();
+	/**
+     * Implementa el metodo comanda del servicio
+	 * para que NO permita generar pedidos de productos
+	 * si no existe el item en la base de datos.
+	 */
+	@Test
+	public void test_comanda_no_item() {
+		Assertions.assertThat(servicio).isNotNull();
+		Orden orden = servicio.comanda("Hermione", "Reliquias de la muerte");
+		Assertions.assertThat(orden).isNull();
+		Item item = (Item) servicio.cargaItem("Reliquias de la muerte");
+		Assertions.assertThat(item).isNotNull();
+		Assertions.assertThat(item.getNombre()).isEmpty();
+		Assertions.assertThat(item.getQuality()).isZero();
 
-	// 	Orden pedido = em.find(Orden.class, 3L);
-    //     Assertions.assertThat(pedido).isNull();
-	// }
+		Orden pedido = em.find(Orden.class, 3L);
+        Assertions.assertThat(pedido).isNull();
+	}
 
 	// /**
 	//  * Modifica el metodo comanda para que 
