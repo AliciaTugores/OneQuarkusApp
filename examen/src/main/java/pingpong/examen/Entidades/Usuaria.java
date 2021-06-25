@@ -1,4 +1,4 @@
-package pingpong.examen;
+package pingpong.examen.Entidades;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

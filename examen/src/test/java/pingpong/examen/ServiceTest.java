@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 
 import io.quarkus.test.junit.QuarkusTest;
+import pingpong.examen.Entidades.*;
 
 @QuarkusTest
 public class ServiceTest {
@@ -240,54 +241,54 @@ public class ServiceTest {
         Assertions.assertThat(pedido).isNull();
 	}
 
-	// /**
-	//  * Implementa el metodo comandaMultiple para que una usuaria
-	//  * pueda ordenar más de un Item a la vez.
-	//  * Guarda las ordenes en la base de datos.
-	//  * 
-	//  * El metodo devuelve las ordenes creadas.
-	//  * 
-	//  * No se crean ordenes si la usuaria no existe previamente
-	//  * en la base de datos.
-	//  * 
-	//  * No se ordenan items que no existan en la base de datos.
-	//  */
+	/**
+	 * Implementa el metodo comandaMultiple para que una usuaria
+	 * pueda ordenar más de un Item a la vez.
+	 * Guarda las ordenes en la base de datos.
+	 * 
+	 * El metodo devuelve las ordenes creadas.
+	 * 
+	 * No se crean ordenes si la usuaria no existe previamente
+	 * en la base de datos.
+	 * 
+	 * No se ordenan items que no existan en la base de datos.
+	 */
 
-	// @Test
-	// @Transactional
-	// public void test_ordenar_multiples_items_ok() {
-	// 	Assertions.assertThat(servicio).isNotNull();
-	// 	List<Orden> ordenes = servicio.comandaMultiple("Hermione", Arrays.asList("AgedBrie", "Elixir of the Mongoose"));
-	// 	Assertions.assertThat(ordenes).isNotEmpty();
-	// 	Assertions.assertThat(ordenes).size().isEqualTo(2);
+	@Test
+	@Transactional
+	public void test_ordenar_multiples_items_ok() {
+		Assertions.assertThat(servicio).isNotNull();
+		List<Orden> ordenes = servicio.comandaMultiple("Hermione", Arrays.asList("AgedBrie", "Elixir of the Mongoose"));
+		Assertions.assertThat(ordenes).isNotEmpty();
+		Assertions.assertThat(ordenes).size().isEqualTo(2);
 
-	// 	TypedQuery<Orden> query = em.createQuery("select orden from Orden orden join orden.user user where user.nombre = 'Hermione'", Orden.class);
-	// 	List<Orden> pedidos = query.getResultList();
+		TypedQuery<Orden> query = em.createQuery("select orden from Orden orden join orden.user user where user.nombre = 'Hermione'", Orden.class);
+		List<Orden> pedidos = query.getResultList();
 		
-    //     Assertions.assertThat(pedidos).isNotNull();
-	// 	Assertions.assertThat(pedidos).hasSize(3);
-    //     Assertions.assertThat(pedidos.get(1).getUser().getNombre()).isEqualTo("Hermione");
-	// 	Assertions.assertThat(pedidos.get(1).getItem().getNombre()).isEqualToIgnoringCase("AgedBrie");
-	// 	Assertions.assertThat(pedidos.get(2).getItem().getNombre()).isEqualToIgnoringCase("Elixir of the Mongoose");
-	// 	em.find(Orden.class, pedidos.get(2).getId()).delete();
-	// 	em.find(Orden.class, pedidos.get(1).getId()).delete();
-	// }
+        Assertions.assertThat(pedidos).isNotNull();
+		Assertions.assertThat(pedidos).hasSize(3);
+        Assertions.assertThat(pedidos.get(1).getUser().getNombre()).isEqualTo("Hermione");
+		Assertions.assertThat(pedidos.get(1).getItem().getNombre()).isEqualToIgnoringCase("AgedBrie");
+		Assertions.assertThat(pedidos.get(2).getItem().getNombre()).isEqualToIgnoringCase("Elixir of the Mongoose");
+		em.find(Orden.class, pedidos.get(2).getId()).delete();
+		em.find(Orden.class, pedidos.get(1).getId()).delete();
+	}
 
-	// // No se permiten ordenes si el usuario no existe en la base de datos
-	// @Test
-	// @Transactional
-	// public void test_ordenar_multiples_items_no_user() {
-	// 	Assertions.assertThat(servicio).isNotNull();
-	// 	List<Orden> ordenes = servicio.comandaMultiple("Severus", Arrays.asList("+5 Dexterity Vest", "Elixir of the Mongoose"));
-	// 	Assertions.assertThat(ordenes).isEmpty();
-	// }
+	// No se permiten ordenes si el usuario no existe en la base de datos
+	@Test
+	@Transactional
+	public void test_ordenar_multiples_items_no_user() {
+		Assertions.assertThat(servicio).isNotNull();
+		List<Orden> ordenes = servicio.comandaMultiple("Severus", Arrays.asList("+5 Dexterity Vest", "Elixir of the Mongoose"));
+		Assertions.assertThat(ordenes).isEmpty();
+	}
 
-	// // No se ordenan items que no existan en la base de datos
-	// @Test
-	// @Transactional
-	// public void test_ordenar_multiples_items_no_item() {
-	// 	Assertions.assertThat(servicio).isNotNull();
-	// 	List<Orden> ordenes = servicio.comandaMultiple("Hermione", Arrays.asList("Guardapelo Salazar", "Reliquias de la Muerte"));
-	// 	Assertions.assertThat(ordenes).isEmpty();
-	// }
+	// No se ordenan items que no existan en la base de datos
+	@Test
+	@Transactional
+	public void test_ordenar_multiples_items_no_item() {
+		Assertions.assertThat(servicio).isNotNull();
+		List<Orden> ordenes = servicio.comandaMultiple("Hermione", Arrays.asList("Guardapelo Salazar", "Reliquias de la Muerte"));
+		Assertions.assertThat(ordenes).isEmpty();
+	}
 	}

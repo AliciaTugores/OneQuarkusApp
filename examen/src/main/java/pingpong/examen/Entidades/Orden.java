@@ -1,4 +1,4 @@
-package pingpong.examen;
+package pingpong.examen.Entidades;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
-import io.smallrye.common.constraint.NotNull;
 
 
 @Entity
