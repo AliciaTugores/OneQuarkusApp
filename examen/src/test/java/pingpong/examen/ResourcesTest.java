@@ -57,34 +57,34 @@ public class ResourcesTest {
             .body(is("Wellcome Ollivanders!"));
     }
 
-//     /**
-//      * La peticion 
-//      *      /usuaria/<nombre>
-//      * ha de retornar el nombre y la destreza de la persona 
-// 	 * indicada de la base de datos.
-//      */
-//     @Test
-//     public void test_get_persona() {
+    /**
+     * La peticion 
+     *      /usuaria/<nombre>
+     * ha de retornar el nombre y la destreza de la persona 
+	 * indicada de la base de datos.
+     */
+    @Test
+    public void test_get_persona() {
 
-//         // Si la usuaria existe la respuesta es 200
-//         given()
-//             .pathParam("nombre", "Doobey")
-//         .when()
-//             .get("/usuaria/{nombre}")
-//         .then()
-//             .statusCode(200)
-//             .contentType(ContentType.JSON)
-//             .body("nombre", equalTo("Doobey"),
-//                   "destreza", equalTo(15));
+        // Si la usuaria existe la respuesta es 200
+        given()
+            .pathParam("nombre", "Doobey")
+        .when()
+            .get("/usuaria/{nombre}")
+        .then()
+            .statusCode(200)
+            .contentType(ContentType.JSON)
+            .body("nombre", equalTo("Doobey"),
+                  "destreza", equalTo(15));
 
-//         // Si la usuaria NO existe la respuesta es 404
-//         given()
-//             .pathParam("nombre", "Severus")
-//         .when()
-//             .get("/usuaria/{nombre}")
-//         .then()
-//             .statusCode(404);
-// 	}
+        // Si la usuaria NO existe la respuesta es 404
+        given()
+            .pathParam("nombre", "Severus")
+        .when()
+            .get("/usuaria/{nombre}")
+        .then()
+            .statusCode(404);
+	}
 
 //     /**
 //      * Ordena un pedido empleando el método POST en la url

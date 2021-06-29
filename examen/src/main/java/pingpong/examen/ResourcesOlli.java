@@ -12,17 +12,32 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import pingpong.examen.Entidades.Usuaria;
+
 @Path("/")
 public class ResourcesOlli {
 
+    //caso test 1
     @Inject
     ServiceOlli service;
 
+    //caso test 2
     @GET
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/wellcome")
     public String wellcome() {
         return "Wellcome Ollivanders!";
+    }
+
+    //caso test 3
+    @GET
+    @Path("/usuaria/{nombre}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response usuaria(@PathParam("nombre") String name){
+        Usuaria usuaria = service.cargaUsuaria(name);
+        return usuaria.getNombre().isEmpty() ?
+                Response.status(Response.Status.NOT_FOUND).build() : 
+                Response.status(Response.Status.OK).entity(usuaria).build();
     }
 }
