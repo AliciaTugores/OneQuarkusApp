@@ -21,6 +21,8 @@ import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.http.ContentType;
 
+import pingpong.examen.Entidades.*;
+
 @QuarkusTest
 public class ResourcesTest {
 
@@ -86,38 +88,38 @@ public class ResourcesTest {
             .statusCode(404);
 	}
 
-//     /**
-//      * Ordena un pedido empleando el método POST en la url
-//      *      /ordena
-//      * Los parametros necesarios son "usuaria" con el nombre de la persona
-// 	 * e "item" con el nombre del objeto, en un JSON.
-//      * La peticion ha de retornar la orden de pedido JSON
-//      * y status code 201 si ha sido generada y 404 en caso contrario.
-//      */
-// 	@Test
-//     @Transactional
-//     public void test_post_ok() {
+    /**
+     * Ordena un pedido empleando el método POST en la url
+     *      /ordena
+     * Los parametros necesarios son "usuaria" con el nombre de la persona
+	 * e "item" con el nombre del objeto, en un JSON.
+     * La peticion ha de retornar la orden de pedido JSON
+     * y status code 201 si ha sido generada y 404 en caso contrario.
+     */
+	@Test
+    @Transactional
+    public void test_post_ok() {
 
-// 		given()
-//             .body("{\"user\": {\"nombre\": \"Hermione\"}, \"item\": {\"nombre\": \"AgedBrie\"}}")
-//             .header("Content-Type", MediaType.APPLICATION_JSON)
-// 		.when()
-//             .post("/ordena")
-//         .then()
-//             .statusCode(201)
-//             .contentType(ContentType.JSON)
-//             .body("user.nombre", equalTo("Hermione"),
-//                   "item.nombre", equalTo("AgedBrie"));
+		given()
+            .body("{\"user\": {\"nombre\": \"Hermione\"}, \"item\": {\"nombre\": \"AgedBrie\"}}")
+            .header("Content-Type", MediaType.APPLICATION_JSON)
+		.when()
+            .post("/ordena")
+        .then()
+            .statusCode(201)
+            .contentType(ContentType.JSON)
+            .body("user.nombre", equalTo("Hermione"),
+                  "item.nombre", equalTo("AgedBrie"));
         
-//         // rollback BBDD
-//         TypedQuery<Orden> query = em.createQuery("select orden from Orden orden join orden.user user where user.nombre = 'Hermione'", Orden.class);
-// 		List<Orden> pedidos = query.getResultList();
-//         Assertions.assertThat(pedidos).isNotNull();
-// 		Assertions.assertThat(pedidos).hasSize(2);
-//         Assertions.assertThat(pedidos.get(1).getUser().getNombre()).isEqualTo("Hermione");
-// 		Assertions.assertThat(pedidos.get(1).getItem().getNombre()).isEqualToIgnoringCase("AgedBrie");
-// 		em.find(Orden.class, pedidos.get(1).getId()).delete();
-// 	}
+        // rollback BBDD
+        TypedQuery<Orden> query = em.createQuery("select orden from Orden orden join orden.user user where user.nombre = 'Hermione'", Orden.class);
+		List<Orden> pedidos = query.getResultList();
+        Assertions.assertThat(pedidos).isNotNull();
+		Assertions.assertThat(pedidos).hasSize(2);
+        Assertions.assertThat(pedidos.get(1).getUser().getNombre()).isEqualTo("Hermione");
+		Assertions.assertThat(pedidos.get(1).getItem().getNombre()).isEqualToIgnoringCase("AgedBrie");
+		em.find(Orden.class, pedidos.get(1).getId()).delete();
+	}
 
 //     // Si la usuaria o el item no existen el controlador devuelve 404
 //     @Test

@@ -12,7 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import pingpong.examen.Entidades.Usuaria;
+import pingpong.examen.Entidades.*;
 
 @Path("/")
 public class ResourcesOlli {
@@ -40,4 +40,17 @@ public class ResourcesOlli {
                 Response.status(Response.Status.NOT_FOUND).build() : 
                 Response.status(Response.Status.OK).entity(usuaria).build();
     }
+
+    //caso test 4
+    @POST
+    @Path("/ordena")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Response ordenar(@Valid Orden orden){
+        Orden pedido = service.comanda(orden.getUser().getNombre(), orden.getItem().getNombre());
+        return pedido != null ?
+                Response.status(Response.Status.CREATED).entity(pedido).build() : 
+                Response.status(Response.Status.NOT_FOUND).build();
+}
 }
