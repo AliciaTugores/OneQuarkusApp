@@ -1,44 +1,44 @@
+package pingpong.examen;
+
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.equalTo;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
+import javax.ws.rs.core.MediaType;
+
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 
-// import static io.restassured.RestAssured.given;
-// import static org.hamcrest.CoreMatchers.is;
-// import static org.hamcrest.Matchers.equalTo;
+import io.quarkus.test.junit.QuarkusTest;
+import io.restassured.common.mapper.TypeRef;
+import io.restassured.http.ContentType;
 
-// import java.util.List;
-// import java.util.Map;
+@QuarkusTest
+public class ResourcesTest {
 
-// import javax.inject.Inject;
-// import javax.persistence.EntityManager;
-// import javax.persistence.TypedQuery;
-// import javax.transaction.Transactional;
-// import javax.ws.rs.core.MediaType;
+    @Inject
+    EntityManager em;
 
-// import org.assertj.core.api.Assertions;
-// import org.junit.jupiter.api.Test;
+    @Inject
+    ResourcesOlli resources;
+    /**
+	 * Implementa una clase Resources que
+	 * añada una API REST a nuestra app.
+	 * Injecta el servicio en Resources.
+     */
 
-
-// import io.quarkus.test.junit.QuarkusTest;
-// import io.restassured.common.mapper.TypeRef;
-// import io.restassured.http.ContentType;
-
-// @QuarkusTest
-// public class ResourcesTest {
-
-//     @Inject
-//     EntityManager em;
-
-//     @Inject
-//     ResourcesOlli resources;
-//     /**
-// 	 * Implementa una clase Resources que
-// 	 * añada una API REST a nuestra app.
-// 	 * Injecta el servicio en Resources.
-//      */
-
-//     @Test
-//     public void test_injeccion() {
-//         Assertions.assertThat(resources.service).isNotNull();
-//     }
+    @Test
+    public void test_injeccion() {
+        Assertions.assertThat(resources.service).isNotNull();
+    }
 
 //     /**
 //      * En el endpoint /wellcome
@@ -188,4 +188,4 @@
 //         .then()
 //             .statusCode(404);
 // 	}
-// }
+}
