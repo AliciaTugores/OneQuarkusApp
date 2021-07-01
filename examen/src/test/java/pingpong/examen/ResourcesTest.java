@@ -121,46 +121,46 @@ public class ResourcesTest {
 		em.find(Orden.class, pedidos.get(1).getId()).delete();
 	}
 
-//     // Si la usuaria o el item no existen el controlador devuelve 404
-//     @Test
-//     public void test_post_ko() {
-//         given()
-//             .body("{\"user\": {\"nombre\": \"Severus\"}, \"item\": {\"nombre\": \"AgedBrie\"}}")
-//             .header("Content-Type", MediaType.APPLICATION_JSON)
-// 		.when()
-//             .post("/ordena")
-//         .then()
-//             .statusCode(404);
+    // Si la usuaria o el item no existen el controlador devuelve 404
+    @Test
+    public void test_post_ko() {
+        given()
+            .body("{\"user\": {\"nombre\": \"Severus\"}, \"item\": {\"nombre\": \"AgedBrie\"}}")
+            .header("Content-Type", MediaType.APPLICATION_JSON)
+		.when()
+            .post("/ordena")
+        .then()
+            .statusCode(404);
 
-//         given()
-//             .body("{\"user\": {\"nombre\": \"Doobey\"}, \"item\": {\"nombre\": \"Varita de Sauco\"}}")
-//             .header("Content-Type", MediaType.APPLICATION_JSON)
-// 		.when()
-//             .post("/ordena")
-//         .then()
-//             .statusCode(404);
-//     }
+        given()
+            .body("{\"user\": {\"nombre\": \"Doobey\"}, \"item\": {\"nombre\": \"Varita de Sauco\"}}")
+            .header("Content-Type", MediaType.APPLICATION_JSON)
+		.when()
+            .post("/ordena")
+        .then()
+            .statusCode(404);
+    }
 
-//     /**
-//      * Obten los pedidos de una usuaria mediante
-//      * una peticion GET en el endpoint:
-//      *      /pedidos/{usuaria}
-//      */
+    /**
+     * Obten los pedidos de una usuaria mediante
+     * una peticion GET en el endpoint:
+     *      /pedidos/{usuaria}
+     */
 
-//     @Test
-//     public void test_pedidos_usuaria() {             
+    @Test
+    public void test_pedidos_usuaria() {             
 
-//         List<Map<String, Object>> pedidos = 
-//             given()
-//                 .contentType(ContentType.JSON)
-//             .when()
-//                 .get("/pedidos/{usuaria}", "Hermione")
-//                 .as(new TypeRef<List<Map<String, Object>>>() {});
+        List<Map<String, Object>> pedidos = 
+            given()
+                .contentType(ContentType.JSON)
+            .when()
+                .get("/pedidos/{usuaria}", "Hermione")
+                .as(new TypeRef<List<Map<String, Object>>>() {});
         
-//         Assertions.assertThat(pedidos).hasSize(1);
-//         Assertions.assertThat(pedidos.get(0).get("user")).hasFieldOrPropertyWithValue("nombre", "Hermione");
-//         Assertions.assertThat(pedidos.get(0).get("item")).hasFieldOrPropertyWithValue("nombre", "+5 Dexterity Vest");
-//     }
+        Assertions.assertThat(pedidos).hasSize(1);
+        Assertions.assertThat(pedidos.get(0).get("user")).hasFieldOrPropertyWithValue("nombre", "Hermione");
+        Assertions.assertThat(pedidos.get(0).get("item")).hasFieldOrPropertyWithValue("nombre", "+5 Dexterity Vest");
+    }
 
 //      /**
 //      * La peticion 

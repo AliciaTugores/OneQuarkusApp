@@ -11,6 +11,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 import pingpong.examen.Entidades.*;
 
@@ -41,7 +42,7 @@ public class ResourcesOlli {
                 Response.status(Response.Status.OK).entity(usuaria).build();
     }
 
-    //caso test 4
+    //caso test 4 y 5
     @POST
     @Path("/ordena")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -52,5 +53,15 @@ public class ResourcesOlli {
         return pedido != null ?
                 Response.status(Response.Status.CREATED).entity(pedido).build() : 
                 Response.status(Response.Status.NOT_FOUND).build();
-}
+    }
+
+    //caso test 6
+    @GET
+    @Path("/pedidos/{usuaria}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Orden> list(@PathParam("usuaria") String usuaria){
+        return service.cargaOrden(usuaria);
+    }
+
+    
 }
