@@ -23,6 +23,7 @@ out/
 
 # Compiled class file
 *.class
+*.classpath
 
 # NetBeans
 nb-configuration.xml
@@ -44,3 +45,5 @@ nb-configuration.xml
 
 # Local environment
 .env
+
+.project
