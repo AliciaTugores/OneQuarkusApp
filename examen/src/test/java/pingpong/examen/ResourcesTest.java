@@ -162,32 +162,32 @@ public class ResourcesTest {
         Assertions.assertThat(pedidos.get(0).get("item")).hasFieldOrPropertyWithValue("nombre", "+5 Dexterity Vest");
     }
 
-//      /**
-//      * La peticion 
-//      *      /item/<nombre>
-//      * ha de retornar el nombre y la calidad
-//      * del Item indicado de la base de datos.
-//      */
-//     @Test
-//     public void test_get_item() {
+     /**
+     * La peticion 
+     *      /item/<nombre>
+     * ha de retornar el nombre y la calidad
+     * del Item indicado de la base de datos.
+     */
+    @Test
+    public void test_get_item() {
 
-//         // Si el item existe la respuesta es 200
-//         given()
-//             .pathParam("nombre", "AgedBrie")
-//         .when()
-//             .get("/item/{nombre}")
-//         .then()
-//             .statusCode(200)
-//             .contentType(ContentType.JSON)
-//             .body("nombre", equalTo("AgedBrie"),
-//                   "quality", equalTo(10));
+        // Si el item existe la respuesta es 200
+        given()
+            .pathParam("nombre", "AgedBrie")
+        .when()
+            .get("/item/{nombre}")
+        .then()
+            .statusCode(200)
+            .contentType(ContentType.JSON)
+            .body("nombre", equalTo("AgedBrie"),
+                  "quality", equalTo(10));
 
-//         // Si el item no existe la respuesta es 404
-//         given()
-//             .pathParam("nombre", "Varita de Sauco")
-//         .when()
-//             .get("/item/{nombre}")
-//         .then()
-//             .statusCode(404);
-// 	}
+        // Si el item no existe la respuesta es 404
+        given()
+            .pathParam("nombre", "Varita de Sauco")
+        .when()
+            .get("/item/{nombre}")
+        .then()
+            .statusCode(404);
+	}
 }

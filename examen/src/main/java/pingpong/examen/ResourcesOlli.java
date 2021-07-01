@@ -58,10 +58,22 @@ public class ResourcesOlli {
     //caso test 6
     @GET
     @Path("/pedidos/{usuaria}")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public List<Orden> list(@PathParam("usuaria") String usuaria){
         return service.cargaOrden(usuaria);
     }
 
-    
+    //caso test 7
+    @GET
+    @Path("/item/{nombre}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response item(@PathParam("nombre") String nombre){
+        Item item = service.cargaItem(nombre);
+        return item.getNombre().isEmpty() ?
+                Response.status(Response.Status.NOT_FOUND).build() :
+                Response.status(Response.Status.OK).entity(item).build();
+    }
+
 }
